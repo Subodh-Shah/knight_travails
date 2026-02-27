@@ -41,6 +41,10 @@ function knightMoves(x, y) {
 }
 
 function knightTravails(start, destination) {
+	if(start[0]<0 || start[0]>7 || start[1]<0 || start[1]>7 || destination[0]<0 || destination[0]>7 || destination[1]<0 || destination[1]>7) {
+		alert("Insert clear start and destination in the board");
+		return;
+	}
 	let queue = new Queue();
 	let visited = Array(8).fill().map(() => Array(8).fill(false));
 	let startNode = new Node(start);
@@ -67,14 +71,17 @@ function knightTravails(start, destination) {
 	}
 }
 
-let knightPath = knightTravails([1,7], [0,3]);
-console.log(knightPath);
-let knigthPathString = '';
-knightPath.forEach((position, index) => {
-	if(index !== knightPath.length - 1) {
-		knigthPathString += `[${position}] -> `;
-	} else {
-		knigthPathString += `[${position}]`;
-	}
-});
-console.log(knigthPathString);
+let knightPath = knightTravails([1,9], [0,3]);
+
+if(knightPath) {
+	console.log(knightPath);
+	let knigthPathString = '';
+	knightPath.forEach((position, index) => {
+		if(index !== knightPath.length - 1) {
+			knigthPathString += `[${position}] -> `;
+		} else {
+			knigthPathString += `[${position}]`;
+		}
+	});
+	console.log(knigthPathString);
+}
